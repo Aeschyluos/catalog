@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/tailwind.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-function App() {
+function LandingPage() {
   return (
-    <div className="container my-5">
+    <div className="Landing">
       <h1 className="text-3xl font-bold text-center text-blue-600">
         Welcome to the catalog!
       </h1>
@@ -18,4 +15,4 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+export default LandingPage;

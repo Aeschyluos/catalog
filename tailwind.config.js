@@ -9,6 +9,10 @@ module.exports = {
         text: "var(--text)",
         primary: "var(--primary)",
       },
+      fontFamily: {
+        stylish: ["'Stylish'", "cursive"],
+        lacquer: ["'Lacquer'", "sans-serif"],
+      },
     },
   },
   plugins: [],

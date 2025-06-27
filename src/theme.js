@@ -15,4 +15,7 @@ export const getDesignTokens = (mode) => ({
           },
         }),
   },
+  typography: {
+    fontFamily: "Stylish, cursive",
+  },
 });

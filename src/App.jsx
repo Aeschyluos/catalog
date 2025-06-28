@@ -1,29 +1,55 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/tailwind.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import LandingPage from "./pages/landingpage";
+import Navbar from "./components/Navbar";
 
 function ErrorPage() {
   return <h2> Please wait. . .</h2>;
 }
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<LandingPage />}
-            errorElement={<ErrorPage />}
-          />
-        </Routes>
-      </BrowserRouter>
+  const scrollContainerRef = useRef(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-      {/* <h1>hello</h1> */}
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current.scrollTop > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  return (
+    <div className="App h-screen flex flex-col overflow-hidden">
+      <BrowserRouter>
+        <Navbar isScrolled={isScrolled} />
+        <div className="flex-1 overflow-y-auto" ref={scrollContainerRef}>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage />}
+              errorElement={<ErrorPage />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

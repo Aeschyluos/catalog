@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 import ThemeToggleButton from "./ThemeToggleButton";
 
-function Navbar() {
+function Navbar({ isScrolled }) {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar
+      position="static"
+      elevation={0}
+      sx={{
+        transition: "background-color 0.5s ease",
+        backgroundColor: isScrolled ? "rgba(21, 21, 21, 0.7)" : "transparent",
+        boxShadow: isScrolled ? 1 : "none",
+        width: "100%",
+        zIndex: 1100,
+      }}
+    >
       <Toolbar className="flex justify-between">
         <Typography
           variant="h3"

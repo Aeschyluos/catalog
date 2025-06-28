@@ -13,6 +13,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +23,7 @@ body {
 } */
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 
 /* ::-webkit-scrollbar-track {

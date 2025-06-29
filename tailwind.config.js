@@ -13,6 +13,10 @@ module.exports = {
         stylish: ["'Stylish'", "cursive"],
         lacquer: ["'Lacquer'", "sans-serif"],
       },
+      spacing: {
+        116: "29rem",
+        120: "30rem",
+      },
     },
   },
   plugins: [],

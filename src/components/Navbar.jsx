@@ -17,12 +17,12 @@ function Navbar({ isScrolled }) {
 
   return (
     <AppBar
-      position="static"
+      position="fixed"
       elevation={0}
       sx={{
         transition: "background-color 0.5s ease",
-        backgroundColor: isScrolled ? "rgba(25, 25, 25, 0.7)" : "transparent",
-        boxShadow: isScrolled ? 1 : "none",
+        backgroundColor: "transparent",
+        boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,0.3)" : "none",
         zIndex: 1100,
         width: "100%",
         height: "10%",

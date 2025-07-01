@@ -4,8 +4,9 @@ import "./styles/tailwind.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import LandingPage from "./pages/landingpage";
 import Navbar from "./components/Navbar";
+import LandingPage from "./pages/landingpage";
+import ShopPage from "./pages/shoppage";
 
 function ErrorPage() {
   return <h2> Please wait. . .</h2>;
@@ -45,6 +46,11 @@ function App() {
             <Route
               path="/"
               element={<LandingPage />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/shop"
+              element={<ShopPage />}
               errorElement={<ErrorPage />}
             />
           </Routes>

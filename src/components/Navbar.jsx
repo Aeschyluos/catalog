@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 
 import ThemeToggleButton from "./ThemeToggleButton";
+import logoImage from "../assets/logo.png";
 
 function Navbar({ isScrolled }) {
   const buttonStyle = {
@@ -20,9 +21,9 @@ function Navbar({ isScrolled }) {
       position="fixed"
       elevation={0}
       sx={{
-        transition: "background-color 0.5s ease",
+        transition: "background-color 0.5s ease, box-shadow 0.5s ease",
         backgroundColor: "transparent",
-        boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,0.3)" : "none",
+        boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,1)" : "none",
         zIndex: 1100,
         width: "100%",
         height: "10%",
@@ -35,8 +36,9 @@ function Navbar({ isScrolled }) {
           component="div"
           sx={{ fontFamily: "Lacquer, sans-serif" }}
         >
-          UNTITLED
+          GOTHLIAT
         </Typography>
+        {/* <img src={logoImage} alt="Logo" style={{ height: "50px" }} /> */}
 
         <Box className="flex space-x-24">
           <Typography fontSize="1.4rem" sx={buttonStyle}>

@@ -3,49 +3,33 @@ import ReactDOM from "react-dom/client";
 import { Box, CircularProgress } from "@mui/material";
 
 import Footer from "../../components/Footer";
+import LazyImage from "../../components/LazyImage";
 import landingImage from "../../assets/landingImage.jpg";
 import landingImage2 from "../../assets/landingImage2.jpg";
 import landingImage3 from "../../assets/landingImage3.jpg";
 import landingImage4 from "../../assets/landingImage4.jpg";
 
 function LandingPage() {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = landingImage4;
-    img.onload = () => {
-      setIsImageLoaded(true);
-    };
-  }, []);
-
   return (
-    <div>
-      <Box
-        padding="1rem"
-        minHeight="2000px"
-        sx={{
-          backgroundImage: isImageLoaded ? `url(${landingImage4})` : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+    <Box minHeight="100vh" position="relative">
+      <LazyImage
+        src={landingImage4}
+        alt="Landing Background"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: -1,
         }}
-      >
-        {isImageLoaded ? (
-          <Box color="white" fontSize="5rem">
-            Lorem Ipsum
-          </Box>
-        ) : (
-          <CircularProgress color="inherit" />
-        )}
-      </Box>
+      />
+
+      <Box padding="1rem" minHeight="100vh"></Box>
 
       <Footer />
-    </div>
+    </Box>
   );
 }
 

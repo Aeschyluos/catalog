@@ -12,12 +12,12 @@ function LazyImage({ src, alt, style }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            observer.disconnect(); // stop observing once visible
+            observer.disconnect();
           }
         });
       },
       {
-        rootMargin: "100px", // preload before entering viewport
+        rootMargin: "100px",
       }
     );
 

@@ -5,14 +5,18 @@ import LazyImage from "./LazyImage";
 
 function ProductCard({ product }) {
   return (
-    <Card className="cursor-pointer hover:shadow-lg transition-shadow">
+    <Card
+      className="cursor-pointer hover:shadow-lg transition-shadow"
+      sx={{ width: "17rem", height: "20rem" }}
+    >
       <CardMedia
         component="img"
         height="300"
-        image={<LazyImage src={product.imageUrl} alt="Product Image" />}
         // image={product.image}
         alt={product.name}
       />
+      <LazyImage src={product.imageUrl} alt="Product Image" />
+
       <CardContent>
         <Typography variant="body1">{product.name}</Typography>
         <Typography variant="body2" color="text.secondary">

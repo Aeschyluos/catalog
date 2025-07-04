@@ -23,12 +23,13 @@ function Navbar({ isScrolled }) {
       elevation={0}
       sx={{
         transition: "background-color 0.5s ease, box-shadow 0.5s ease",
-        backgroundColor: "transparent",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
         boxShadow: isScrolled ? "0 4px 12px rgba(0,0,0,1)" : "none",
         zIndex: 1100,
         width: "100%",
         height: "11%",
         paddingTop: "1rem",
+        "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
       }}
     >
       <Toolbar className="max-w-7xl mx-auto w-full flex justify-center items-center px-4 md:px-8 relative">

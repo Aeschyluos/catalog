@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Navbar from "./components/Navbar";
 import LandingPage from "./pages/landingpage";
 import ShopPage from "./pages/shoppage";
+import AdminUploadPage from "./pages/adminuploadpage";
 
 function ErrorPage() {
   return <h2> Please wait. . .</h2>;
@@ -51,6 +52,11 @@ function App() {
             <Route
               path="/shop"
               element={<ShopPage />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/admin/upload"
+              element={<AdminUploadPage />}
               errorElement={<ErrorPage />}
             />
           </Routes>

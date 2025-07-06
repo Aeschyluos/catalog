@@ -7,9 +7,8 @@ import {
   CircularProgress,
   Button,
   IconButton,
-  TextField,
 } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Add, Remove, ArrowBack } from "@mui/icons-material";
 import LazyImage from "../../components/LazyImage";
 
 function ProductPage() {
@@ -38,67 +37,103 @@ function ProductPage() {
 
   if (!product) return <Typography>Product not found</Typography>;
 
-  const handleQuantityChange = (e) => {
-    const value = Math.max(1, parseInt(e.target.value) || 1);
-    setQuantity(value);
+  const handleQuantityChange = (type) => {
+    if (type === "decrease" && quantity > 1) {
+      setQuantity(quantity - 1);
+    } else if (type === "increase") {
+      setQuantity(quantity + 1);
+    }
   };
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} of ${product.name} to cart`);
-    // TODO: Add to cart functionality
+    // TODO: actually do cart things
   };
 
   return (
-    <Box className="max-w-7xl mx-auto p-4 md:p-8">
-      <Box height="10vh"></Box>
-      {/* Back Button */}
-      <IconButton onClick={() => navigate(-1)} className="mb-4">
-        <ArrowBackIcon />
-      </IconButton>
+    <Box className="min-h-screen max-w-7xl mx-auto p-4 md:p-8 flex flex-col">
+      <Box
+        position="relative"
+        width="100%"
+        height="100%"
+        minHeight="10vh"
+      ></Box>
 
-      {/* Layout: Image Left - Details Right */}
-      <Box className="flex flex-col md:flex-row gap-8">
-        {/* Product Image */}
-        <Box className="md:w-1/2 w-full">
+      <Box className="flex flex-col md:flex-row justify-center items-center gap-32">
+        <Box className="md:w-[400px] w-full">
+          <Box className="mb-4">
+            <IconButton
+              onClick={() => navigate(-1)}
+              sx={{
+                border: "1px solid black",
+                width: "40px",
+                height: "40px",
+              }}
+            >
+              <ArrowBack />
+            </IconButton>
+          </Box>
           <LazyImage
             src={product.imageUrl}
             alt={product.name}
-            style={{ width: "100%", maxHeight: "100%", objectFit: "cover" }}
+            style={{
+              width: "100%",
+              maxHeight: "500px",
+              objectFit: "contain",
+            }}
           />
         </Box>
 
-        {/* Product Details */}
-        <Box className="flex-1" sx={{ paddingLeft: "10rem" }}>
-          <Typography variant="h3" className="mb-4">
-            {product.name}
-          </Typography>
-          <Typography variant="h5" color="text.secondary" className="mb-2">
-            {product.brand}
-          </Typography>
-          <Typography variant="body1" className="mb-4">
-            {product.description}
-          </Typography>
-          <Typography variant="h6" className="mb-4">
-            ${product.price}
-          </Typography>
+        <Box className="flex flex-col max-w-md w-full h-full justify-between">
+          <Box marginBottom="14rem">
+            <Typography
+              variant="h3"
+              className="font-bold"
+              sx={{ marginBottom: "1rem" }}
+            >
+              {product.name}
+            </Typography>
 
-          {/* Quantity and Add to Cart */}
-          <Box className="flex items-center gap-4 mb-4">
-            <TextField
-              type="number"
-              label="Quantity"
-              value={quantity}
-              onChange={handleQuantityChange}
-              inputProps={{ min: 1 }}
-              size="small"
-              sx={{ width: "100px" }}
-            />
+            <Typography
+              variant="h6"
+              className="font-semibold"
+              sx={{ mb: "2rem" }}
+            >
+              Rp {product.price}
+            </Typography>
+
+            <Typography variant="body1">{product.description}</Typography>
+          </Box>
+
+          <Box className="flex items-center gap-4">
+            <Box className="flex items-center border rounded px-2 py-1">
+              <IconButton
+                onClick={() => handleQuantityChange("decrease")}
+                size="small"
+              >
+                <Remove />
+              </IconButton>
+              <Typography className="mx-2">{quantity}</Typography>
+              <IconButton
+                onClick={() => handleQuantityChange("increase")}
+                size="small"
+              >
+                <Add />
+              </IconButton>
+            </Box>
+
             <Button
               variant="contained"
-              color="primary"
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                px: 4,
+                py: 1.5,
+                "&:hover": { backgroundColor: "#333" },
+              }}
               onClick={handleAddToCart}
             >
-              Add to Cart
+              ADD TO CART
             </Button>
           </Box>
         </Box>

@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import LandingPage from "./pages/landingpage";
 import ShopPage from "./pages/shoppage";
 import AdminUploadPage from "./pages/adminuploadpage";
+import ProductPage from "./pages/productpage";
 
 function ErrorPage() {
   return <h2> Please wait. . .</h2>;
@@ -57,6 +58,11 @@ function App() {
             <Route
               path="/admin/upload"
               element={<AdminUploadPage />}
+              errorElement={<ErrorPage />}
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductPage />}
               errorElement={<ErrorPage />}
             />
           </Routes>

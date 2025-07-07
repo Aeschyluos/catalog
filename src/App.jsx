@@ -9,6 +9,7 @@ import LandingPage from "./pages/landingpage";
 import ShopPage from "./pages/shoppage";
 import AdminUploadPage from "./pages/adminuploadpage";
 import ProductPage from "./pages/productpage";
+import { CartProvider } from "./context/CartContext";
 
 function ErrorPage() {
   return <h2> Please wait. . .</h2>;
@@ -42,31 +43,33 @@ function App() {
   return (
     <div className="App h-screen flex flex-col overflow-hidden">
       <BrowserRouter>
-        <Navbar isScrolled={isScrolled} />
-        <div className="flex-1 overflow-y-auto" ref={scrollContainerRef}>
-          <Routes>
-            <Route
-              path="/"
-              element={<LandingPage />}
-              errorElement={<ErrorPage />}
-            />
-            <Route
-              path="/shop"
-              element={<ShopPage />}
-              errorElement={<ErrorPage />}
-            />
-            <Route
-              path="/admin/upload"
-              element={<AdminUploadPage />}
-              errorElement={<ErrorPage />}
-            />
-            <Route
-              path="/product/:id"
-              element={<ProductPage />}
-              errorElement={<ErrorPage />}
-            />
-          </Routes>
-        </div>
+        <CartProvider>
+          <Navbar isScrolled={isScrolled} />
+          <div className="flex-1 overflow-y-auto" ref={scrollContainerRef}>
+            <Routes>
+              <Route
+                path="/"
+                element={<LandingPage />}
+                errorElement={<ErrorPage />}
+              />
+              <Route
+                path="/shop"
+                element={<ShopPage />}
+                errorElement={<ErrorPage />}
+              />
+              <Route
+                path="/admin/upload"
+                element={<AdminUploadPage />}
+                errorElement={<ErrorPage />}
+              />
+              <Route
+                path="/product/:id"
+                element={<ProductPage />}
+                errorElement={<ErrorPage />}
+              />
+            </Routes>
+          </div>
+        </CartProvider>
       </BrowserRouter>
     </div>
   );

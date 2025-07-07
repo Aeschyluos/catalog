@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Add, Remove, ArrowBack } from "@mui/icons-material";
 import LazyImage from "../../components/LazyImage";
+import { useCart } from "../../context/CartContext";
 
 function ProductPage() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -46,8 +48,8 @@ function ProductPage() {
   };
 
   const handleAddToCart = () => {
+    addToCart(product, quantity);
     console.log(`Added ${quantity} of ${product.name} to cart`);
-    // TODO: actually do cart things
   };
 
   return (
@@ -65,7 +67,6 @@ function ProductPage() {
             <IconButton
               onClick={() => navigate(-1)}
               sx={{
-                border: "1px solid black",
                 width: "40px",
                 height: "40px",
               }}

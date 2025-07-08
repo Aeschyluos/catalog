@@ -26,9 +26,7 @@ function LandingPage() {
         }}
       />
 
-      <Box padding="1rem" minHeight="100vh"></Box>
-
-      <Footer />
+      <Box padding="11%" minHeight="100vh"></Box>
     </Box>
   );
 }

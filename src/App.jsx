@@ -9,6 +9,7 @@ import LandingPage from "./pages/landingpage";
 import ShopPage from "./pages/shoppage";
 import AdminUploadPage from "./pages/adminuploadpage";
 import ProductPage from "./pages/productpage";
+import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
 
 function ErrorPage() {
@@ -16,28 +17,18 @@ function ErrorPage() {
 }
 
 function App() {
-  const scrollContainerRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (scrollContainerRef.current.scrollTop > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrollTop = scrollContainerRef.current?.scrollTop || 0;
+      setIsScrolled(scrollTop > 50);
     };
 
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    };
+    const scrollEl = scrollContainerRef.current;
+    scrollEl?.addEventListener("scroll", handleScroll);
+    return () => scrollEl?.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -68,6 +59,7 @@ function App() {
                 errorElement={<ErrorPage />}
               />
             </Routes>
+            <Footer />
           </div>
         </CartProvider>
       </BrowserRouter>

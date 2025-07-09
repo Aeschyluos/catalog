@@ -1,52 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, CircularProgress, Button } from "@mui/material";
 
 import ProductCard from "../../components/ProductCard";
 import Categories from "../../components/Categories";
-// import product1 from "../../assets/product1.png";
-
-// const products = [
-//   // Sample products, replace with API call later
-//   {
-//     id: 1,
-//     name: "Pants Leonia Rose Black",
-//     brand: "Thanksinsomnia",
-//     image: "../../assets/product1.png",
-//   },
-//   {
-//     id: 2,
-//     name: "Pants Leonia Code Black",
-//     brand: "Thanksinsomnia",
-//     image: "/assets/product2.jpg",
-//   },
-//   {
-//     id: 3,
-//     name: "Denim Pants Vivianne Raw Black",
-//     brand: "Thanksinsomnia",
-//     image: "/assets/product3.jpg",
-//   },
-//   {
-//     id: 4,
-//     name: "Long Shirt Tessa Western Beige",
-//     brand: "Thanksinsomnia",
-//     image: "/assets/product4.jpg",
-//   },
-// ];
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.get("http://localhost:5000/api/products");
+      setProducts(response.data);
+    } catch (err) {
+      setError("Server is down.");
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
     fetchProducts();
   }, []);
 
@@ -59,30 +38,62 @@ function ShopPage() {
         minHeight="10vh"
       ></Box>
       <Box className="flex flex-col md:flex-row gap-8">
-        <Box className="w-full md:w-1/4">
+        {/* <Box className="w-full md:w-1/4">
           <Categories />
-        </Box>
+        </Box> */}
 
-        {/* Product Section */}
         <Box className="flex-1">
-          {/* Breadcrumb */}
-          <Typography fontSize="0.9rem" className="text-gray-500 mb-2">
-            New
+          <Typography variant="h3" marginTop="1rem" marginBottom="1.5rem">
+            Most Recent
           </Typography>
 
-          {/* Page Title */}
-          <Typography variant="h3" className="mb-6">
-            Collection
-          </Typography>
+          {loading && (
+            <Box className="flex justify-center items-center" marginTop="10rem">
+              <CircularProgress sx={{ color: "white" }} />
+            </Box>
+          )}
 
-          {/* Product Grid */}
-          <Grid container spacing={4}>
-            {products.map((product) => (
-              <Grid item key={product.id}>
-                <ProductCard product={product} />
-              </Grid>
-            ))}
-          </Grid>
+          {error && (
+            <Box
+              className="flex flex-col items-center space-y-4"
+              marginTop="9rem"
+            >
+              <Typography color="error">{error}</Typography>
+
+              <Button
+                onClick={fetchProducts}
+                variant="contained"
+                sx={{
+                  backgroundColor: "gray",
+                  "&:hover": { backgroundColor: "lightgray" },
+                }}
+              >
+                RETRY
+              </Button>
+            </Box>
+          )}
+
+          {!loading && !error && (
+            <>
+              {products && products.length > 0 ? (
+                <Grid container spacing={4}>
+                  {products.map((product) => (
+                    <Grid item key={product.id}>
+                      <ProductCard product={product} />
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <Typography
+                  className="flex justify-center items-center"
+                  marginTop="10rem"
+                  variant="h6"
+                >
+                  Looks like we're out. . .
+                </Typography>
+              )}
+            </>
+          )}
         </Box>
       </Box>
     </Box>

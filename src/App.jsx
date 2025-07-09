@@ -32,11 +32,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App h-screen flex flex-col overflow-hidden">
+    <div className="App min-h-screen flex flex-col ">
       <BrowserRouter>
         <CartProvider>
           <Navbar isScrolled={isScrolled} />
-          <div className="flex-1 overflow-y-auto" ref={scrollContainerRef}>
+          <div className="flex-grow overflow-y-auto" ref={scrollContainerRef}>
             <Routes>
               <Route
                 path="/"
@@ -59,8 +59,8 @@ function App() {
                 errorElement={<ErrorPage />}
               />
             </Routes>
-            <Footer />
           </div>
+          <Footer />
         </CartProvider>
       </BrowserRouter>
     </div>

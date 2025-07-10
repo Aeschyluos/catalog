@@ -35,7 +35,7 @@ function ProductCard({ product }) {
             {product.description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {product.price}
+            Rp. {product.price.toLocaleString("id-ID")}
           </Typography>
         </CardContent>
       </Link>

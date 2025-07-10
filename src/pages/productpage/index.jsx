@@ -100,7 +100,7 @@ function ProductPage() {
               className="font-semibold"
               sx={{ mb: "2rem" }}
             >
-              Rp {product.price}
+              Rp {product.price.toLocaleString("id-ID")}
             </Typography>
 
             <Typography variant="body1">{product.description}</Typography>

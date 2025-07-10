@@ -26,7 +26,7 @@ function Navbar({ isScrolled }) {
         transition: "background-color 0.5s ease, box-shadow 0.5s ease",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         boxShadow: isScrolled ? "0 4px 8px rgba(0,0,0,1)" : "none",
-        zIndex: 1100,
+        zIndex: 1,
         width: "calc(100vw - 8px)",
         left: 0,
         height: "85px",

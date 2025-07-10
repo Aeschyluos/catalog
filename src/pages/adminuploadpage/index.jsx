@@ -5,7 +5,6 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 function AdminUploadPage() {
   const [formData, setFormData] = useState({
     name: "",
-    brand: "",
     category: "",
     price: "",
     description: "",
@@ -34,7 +33,6 @@ function AdminUploadPage() {
 
     const data = new FormData();
     data.append("name", formData.name);
-    data.append("brand", formData.brand);
     data.append("category", formData.category);
     data.append("price", formData.price);
     data.append("description", formData.description);
@@ -51,7 +49,6 @@ function AdminUploadPage() {
       // Reset form
       setFormData({
         name: "",
-        brand: "",
         category: "",
         price: "",
         description: "",
@@ -66,14 +63,14 @@ function AdminUploadPage() {
 
   return (
     <Box className="max-w-xl mx-auto p-4 md:p-8">
-        <Box
-              position="relative"
-              width="100%"
-              height="100%"
-              minHeight="10vh"
-            ></Box>
+      <Box
+        position="relative"
+        width="100%"
+        height="100%"
+        minHeight="10vh"
+      ></Box>
       <Typography variant="h4" className="mb-6">
-        Admin Product Upload
+        Product upload
       </Typography>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,13 +81,6 @@ function AdminUploadPage() {
           value={formData.name}
           onChange={handleChange}
           required
-        />
-        <TextField
-          fullWidth
-          label="Brand"
-          name="brand"
-          value={formData.brand}
-          onChange={handleChange}
         />
         <TextField
           fullWidth

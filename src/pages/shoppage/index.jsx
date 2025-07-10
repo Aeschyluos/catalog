@@ -78,7 +78,7 @@ function ShopPage() {
               {products && products.length > 0 ? (
                 <Grid container spacing={4}>
                   {products.map((product) => (
-                    <Grid item key={product.id}>
+                    <Grid item key={product._id}>
                       <ProductCard product={product} />
                     </Grid>
                   ))}

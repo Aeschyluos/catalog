@@ -41,12 +41,17 @@ function AdminUploadPage() {
     try {
       const response = await axios.post(
         "http://localhost:5000/api/products/add",
-        data
+        data,
+        {
+          headers: {
+            "x-admin-key": process.env.ADMIN_API_KEY,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log("Product Uploaded:", response.data);
       setUploadStatus("Upload Successful!");
 
-      // Reset form
       setFormData({
         name: "",
         category: "",

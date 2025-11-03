@@ -3,7 +3,6 @@ import axios from "axios";
 import { Box, Typography, Grid, CircularProgress, Button } from "@mui/material";
 
 import ProductCard from "../../components/ProductCard";
-import Categories from "../../components/Categories";
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
@@ -38,12 +37,8 @@ function ShopPage() {
         minHeight="10vh"
       ></Box>
       <Box className="flex flex-col md:flex-row gap-8">
-        {/* <Box className="w-full md:w-1/4">
-          <Categories />
-        </Box> */}
-
         <Box className="flex-1">
-          <Typography variant="h3" marginTop="1rem" marginBottom="1.5rem">
+          <Typography variant="h4" marginTop="1rem" marginBottom="1.5rem">
             Most Recent
           </Typography>
 
@@ -89,7 +84,7 @@ function ShopPage() {
                   marginTop="10rem"
                   variant="h6"
                 >
-                  Looks like we're out. . .
+                  Looks like we're out of things. . .
                 </Typography>
               )}
             </>

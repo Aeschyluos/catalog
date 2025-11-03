@@ -9,8 +9,6 @@ import {
   IconButton,
 } from "@mui/material";
 
-import ThemeToggleButton from "./ThemeToggleButton";
-import logoImage from "../assets/logo.png";
 import CartDropdown from "./CartDropdown";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 
@@ -24,18 +22,17 @@ function Navbar({ isScrolled }) {
       elevation={0}
       sx={{
         transition: "background-color 0.5s ease, box-shadow 0.5s ease",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
         boxShadow: isScrolled ? "0 4px 8px rgba(0,0,0,1)" : "none",
-        zIndex: 1,
-        width: "calc(100vw - 8px)",
+        zIndex: 10,
         left: 0,
         height: "85px",
         paddingTop: "1rem",
 
-        "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.8)" },
+        "&:hover": { backgroundColor: "rgba(0, 0, 0, 1)" },
       }}
     >
-      <Toolbar className="max-w-7xl mx-auto w-full flex justify-center items-center px-4 md:px-8 relative">
+      <Toolbar className="max-w-7xl mx-auto w-full flex justify-center items-center ">
         <Box className="flex space-x-24 absolute left-4 md:left-8">
           <Link to="/shop" style={{ textDecoration: "none", color: "inherit" }}>
             <Typography
@@ -45,12 +42,6 @@ function Navbar({ isScrolled }) {
               Shop
             </Typography>
           </Link>
-          <Typography
-            fontSize={{ xs: "1rem", md: "1.2rem" }}
-            className="mb-3 cursor-pointer hover:text-gray-500 transition-colors active:text-gray-600"
-          >
-            About
-          </Typography>
         </Box>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Typography
@@ -90,12 +81,12 @@ function Navbar({ isScrolled }) {
               onClose={() => setCartOpen(false)}
             />
           )}
-          <Typography
+          {/* <Typography
             fontSize={{ xs: "1rem", md: "1.2rem" }}
             className="mb-3 cursor-pointer hover:text-gray-500 transition-colors active:text-gray-600"
           >
             Help
-          </Typography>
+          </Typography> */}
         </Box>
       </Toolbar>
     </AppBar>

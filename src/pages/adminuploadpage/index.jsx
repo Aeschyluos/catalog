@@ -8,6 +8,7 @@ function AdminUploadPage() {
     category: "",
     price: "",
     description: "",
+    sold: false,
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -37,6 +38,7 @@ function AdminUploadPage() {
     data.append("price", formData.price);
     data.append("description", formData.description);
     data.append("image", selectedImage);
+    data.append("sold", formData.sold);
 
     try {
       const response = await axios.post(
@@ -44,7 +46,7 @@ function AdminUploadPage() {
         data,
         {
           headers: {
-            "x-admin-key": process.env.ADMIN_API_KEY,
+            "x-admin-key": import.meta.env.VITE_ADMIN_API_KEY,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -57,6 +59,7 @@ function AdminUploadPage() {
         category: "",
         price: "",
         description: "",
+        sold: false,
       });
       setSelectedImage(null);
       setPreviewImage(null);
@@ -119,6 +122,7 @@ function AdminUploadPage() {
           onChange={handleImageChange}
           required
         />
+
         {previewImage && (
           <Box className="mt-4">
             <Typography>Image Preview:</Typography>
@@ -129,6 +133,17 @@ function AdminUploadPage() {
             />
           </Box>
         )}
+        <Box className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="sold"
+            checked={formData.sold}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, sold: e.target.checked }))
+            }
+          />
+          <Typography>Mark as sold</Typography>
+        </Box>
         <Button variant="contained" color="primary" type="submit">
           Upload Product
         </Button>

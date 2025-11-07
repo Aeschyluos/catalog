@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
         const newQuantity = existingItem.quantity + quantity;
 
         if (newQuantity <= 0) {
-          return prev.filter((item) => item.product._id !== product._id); // remove
+          return prev.filter((item) => item.product._id !== product._id);
         }
 
         return prev.map((item) =>
@@ -32,12 +32,11 @@ export const CartProvider = ({ children }) => {
         );
       }
 
-      // If no existing item and quantity is positive, add it
       if (quantity > 0) {
         return [...prev, { product, quantity }];
       }
 
-      return prev; // do nothing if trying to add negative of non-existing product
+      return prev; // should do nothing if trying to add negative of non-existing product
     });
   };
 
